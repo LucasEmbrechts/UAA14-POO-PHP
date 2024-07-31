@@ -1,4 +1,5 @@
 <?php
+require_once('LectureException.class.php');
 class LecteurFichier{
     private $fichier;
 
@@ -11,7 +12,11 @@ class LecteurFichier{
 
     function lireLigne(){
         if(!feof($this->fichier)) {
-            return fgets($this->fichier);
+            $ligne = fgets($this->fichier);
+            if($ligne == false){
+                throw new LectureException();
+            }
+            return $ligne;
         }
     }
 
