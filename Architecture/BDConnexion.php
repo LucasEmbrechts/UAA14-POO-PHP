@@ -13,7 +13,7 @@ class BDConnexion {
             //On définit le mode d'erreur de PDO sur Exception
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
-        catch(PDOException $e){
+        catch(Exception $e){
             throw new ConnexionException("Échec de la connexion : $e->getMessage()");
         }
     }

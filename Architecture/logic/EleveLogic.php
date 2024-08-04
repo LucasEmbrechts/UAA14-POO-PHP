@@ -1,9 +1,7 @@
 <?php
-
-class EleveDataAccess{
-    private $connexion;
+class EleveLogic{
+    private $eleveDA;
     public function __construct() {
-        $bdd = BDConnexion::getInstance();
         $this->connexion = $bdd->getConnection();
     }
 
