@@ -1,18 +1,16 @@
 <?php
+require_once 'dataAccess/EleveDataAccess.php';
 class EleveLogic{
     private $eleveDA;
     public function __construct() {
-        $this->connexion = $bdd->getConnection();
+        $this->eleveDA = new EleveDataAccess();
     }
 
     public function getAllEleves(){
         try{
-            $query = 'SELECT * FROM eleve';
-            $statement = $this->connexion->prepare($query);
-            $statement->execute();
-            $eleves = $statement->fetchAll();
+            $eleves = $this->eleveDA->getAllEleves();
             return $eleves;
-        }catch(Exception $e){
+        }catch(ConnexionException $e){
             throw new ConnexionException($e->getMessage());
         }
 

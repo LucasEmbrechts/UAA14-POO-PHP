@@ -3,7 +3,7 @@ class BDConnexion {
     private static $instance = null;
     private $connection;
     private $host = 'localhost';
-    private $username = '';
+    private $username = 'root';
     private $password = '';
     private $database = 'archi';
 
@@ -13,8 +13,9 @@ class BDConnexion {
             //On définit le mode d'erreur de PDO sur Exception
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
-        catch(Exception $e){
-            throw new ConnexionException("Échec de la connexion : $e->getMessage()");
+        catch(PDOException $e){
+            $m = $e->getMessage();
+            throw new ConnexionException("Échec de la connexion : $m");
         }
     }
 
@@ -31,5 +32,4 @@ class BDConnexion {
 
     private function __clone() {}
 
-    private function __wakeup() {}
 }
