@@ -13,6 +13,13 @@ class EleveLogic{
         }catch(ConnexionException $e){
             throw new ConnexionException($e->getMessage());
         }
+    }
 
+    public function addEleve($eleve){
+        try{
+            return $this->eleveDA->addEleve($eleve);
+        }catch(ConnexionException $e){
+            throw new ConnexionException($e->getMessage());
+        }
     }
 }
