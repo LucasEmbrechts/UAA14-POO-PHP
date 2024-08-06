@@ -52,4 +52,15 @@ class EleveDataAccess{
             throw new ConnexionException($e->getMessage());
         }
     }
+
+    public function deleteEleve($id){
+        try{
+            $query = 'DELETE FROM eleve WHERE id=?';
+            $statement = $this->connexion->prepare($query);
+            $statement->bindValue(1, $id, PDO::PARAM_INT);
+            $statement->execute();
+        }catch(Exception $e){
+            throw new ConnexionException($e->getMessage());
+        }
+    }
 }

@@ -18,12 +18,21 @@ if (isset($_POST["nom"]) && isset($_POST["dateNaissance"])) {
 </head>
 
 <body>
+    <?php
+    if (isset($_GET["delete"])) {
+        try {
+            $eleveLogic->deleteEleve($_GET["delete"]);
+        } catch (EleveInexistantException $e) {
+            echo $e->getMessage();
+        }
+    }
+    ?>
     <h1>Liste des élèves :</h1>
     <ul>
         <?php
         $eleves = $eleveLogic->getAllEleves();
         foreach ($eleves as $eleve) {
-            echo "<li>$eleve->nom ($eleve->dateDeNaissance)</li>";
+            echo "<li onclick='suppEleve($eleve->id)'>$eleve->nom ($eleve->dateDeNaissance)</li>";
         }
         ?>
     </ul>
@@ -33,6 +42,11 @@ if (isset($_POST["nom"]) && isset($_POST["dateNaissance"])) {
         <input type="date" name="dateNaissance" id="" placeholder="date de naissance">
         <input type="submit" value="Ajouter">
     </form>
+    <script>
+        function suppEleve(id) {
+            location.href = "index.php?delete=" + id;
+        }
+    </script>
 </body>
 
 </html>
