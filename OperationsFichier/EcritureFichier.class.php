@@ -7,7 +7,7 @@ class EcritureFichier{
         if(!(file_exists($n))){
             throw new LectureException();
         }
-        $this->fichier = fopen($n, "r");
+        $this->fichier = fopen($n, "a");
     }
 
     function ecrire($ligne){
