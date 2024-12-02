@@ -4,7 +4,7 @@ class EcritureFichier{
     private $fichier;
 
     function __construct($n){
-        if(!(file_exists($n))){
+        if(!(file_exists($n))|| !is_writable($n)){
             throw new LectureException();
         }
         $this->fichier = fopen($n, "a");
