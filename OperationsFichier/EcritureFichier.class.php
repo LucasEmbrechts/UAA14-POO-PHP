@@ -11,7 +11,7 @@ class EcritureFichier{
     }
 
     function ecrire($ligne){
-        if(fwrite($this->fichier, $ligne) == false) throw new LectureException();
+        if(fwrite($this->fichier, $ligne) == false) throw new EcritureException();
     }
 
     function __destruct(){
